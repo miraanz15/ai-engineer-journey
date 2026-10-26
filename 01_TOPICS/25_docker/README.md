@@ -11,11 +11,11 @@
 
 ## Status
 
-- [ ] Level 1 learned
-- [ ] Level 1 drills done
-- [ ] Level 2 learned
+- [x] Level 1 learned (concept + hands-on: image/container, daemon, venv-vs-Docker)
+- [x] Level 1 drills done (`hello-world`, MongoDB run/stop/start, `ps`/`ps -a`, port mapping, `rm`/`rm -f`, `images`, `rmi`, `logs` — full command table verified, every item actually run, not just listed)
+- [ ] Level 2 learned *(Day 27 — Dockerfile authoring, layers, compose, multi-stage)*
 - [ ] Level 2 drills done
-- [ ] Interview questions answered out loud
+- [x] Interview questions answered — see `5_interview_qa.md` (7 questions written; verbal drill pending)
 - [ ] Can explain this topic with no notes
 
 ## What's in this folder

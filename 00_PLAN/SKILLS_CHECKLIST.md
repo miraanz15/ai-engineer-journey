@@ -8,25 +8,25 @@
 
 # PHASE 1 — FOUNDATION (Days 1–4)
 
-## 00 · Environment, Git & GitHub — L1 `Day 1`
-- [ ] Python 3.11+, VS Code + Python extension
-- [ ] Terminal: `cd` `ls` `pwd` `mkdir` `rm` `cp` `mv`
-- [ ] venv — create, activate, why it exists
-- [ ] pip: install, list, freeze, `requirements.txt`
-- [ ] `.env` + `python-dotenv`; `.gitignore`
-- [ ] Why version control exists
-- [ ] `git init` `status` `add` `commit` `log` `diff`
-- [ ] The three rooms: working area → staging → repository
-- [ ] Good commit messages
-- [ ] `branch` `switch` `merge`
-- [ ] 💥 Merge conflicts — cause one, fix one
-- [ ] `remote add` `push` `pull` `clone`
-- [ ] `fetch` vs `pull` — the difference
-- [ ] Undo: `restore` `reset` `revert` · `stash`
-- [ ] `HEAD`, detached HEAD · `git show` · `git blame` · tags
-- [ ] GitHub: repo, README, first push
-- [ ] Docker concept: image vs container, `run`/`ps`/`stop`
-- [ ] Run MongoDB in Docker
+## 00 · Environment, Git & GitHub — L1 `Day 1` ✅ COMPLETE
+- [x] Python 3.11+ confirmed (3.13.5), VS Code
+- [x] Terminal basics
+- [x] venv — create, activate, why it exists
+- [x] pip: install, list, freeze, `requirements.txt` — proven with a full destroy-and-rebuild test
+- [x] `.env` + `python-dotenv`; `.gitignore` — incl. the "must exist before first commit" rule
+- [x] Why version control exists
+- [x] `git init` `status` `add` `commit` `log` `diff`
+- [x] The three rooms: working area → staging → repository
+- [x] Good commit messages — practiced, got feedback, revised
+- [x] `branch` `switch` `merge`
+- [x] 💥 Merge conflicts — caused and resolved twice, plus a clean three-way merge in between
+- [x] `remote add` `push` `pull` `clone`
+- [x] `fetch` vs `pull` — done hands-on via a real second clone, both ways
+- [x] Undo: `restore` `restore --staged` `reset --soft` · `git revert` · full stash toolkit (push/show/apply/pop/drop)
+- [x] `HEAD`, detached HEAD (risk + fix both proven live) · `git blame` · tags (lightweight + annotated)
+- [x] GitHub: real repo created, real first push, under own identity
+- [x] Docker concept: image vs container, daemon vs CLI, venv-vs-Docker scope
+- [x] Run MongoDB in Docker — pulled, ran detached, verified port mapping, stopped/started, confirmed same container ID survives restart
 
 ## 01 · Python for AI `Day 2`
 - [ ] Data types; list / tuple / dict / set — when to use each

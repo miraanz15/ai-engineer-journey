@@ -11,11 +11,11 @@
 
 ## Status
 
-- [ ] Level 1 learned
-- [ ] Level 1 drills done
-- [ ] Level 2 learned
+- [x] Level 1 learned (venv, pip, .env, .gitignore, full Git — branching, 3 merge types, conflict, undo ×3, revert, stash toolkit, detached HEAD, blame, tags, fetch vs pull)
+- [x] Level 1 drills done — all redone with real proof after a full restart
+- [ ] Level 2 learned *(Day 43 — Git for teams & organisations)*
 - [ ] Level 2 drills done
-- [ ] Interview questions answered out loud
+- [x] Interview questions written — 16 full Q&As in `5_interview_qa.md`; verbal drill pending
 - [ ] Can explain this topic with no notes
 
 ## What's in this folder

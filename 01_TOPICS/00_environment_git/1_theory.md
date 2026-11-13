@@ -220,3 +220,57 @@ git merge origin/main             # Fast-forward — brings the change into main
 cat README.md                     # test line now present locally
 ```
 Confirms `fetch` + `merge` = what `pull` would have done in one step.
+
+## Undo tools
+
+### `git restore <file>` — discard an unstaged edit
+Throws away an uncommitted, unstaged change, restoring the file to match the last commit. Modern replacement for `git checkout -- <file>`.
+```bash
+printf "TEMPORARY TEST EDIT\n" >> README.md
+git restore README.md   # edit gone, file back to last commit
+```
+
+### `git restore --staged <file>` — unstage, don't undo
+Moves a file out of the staging area, back to "modified, not staged." **The edit itself is NOT deleted** — only unstaged.
+```bash
+git add 00_PLAN/SKILLS_CHECKLIST.md
+git restore --staged 00_PLAN/SKILLS_CHECKLIST.md   # back to "not staged", edit still there
+```
+
+### `git reset --soft <commit>` — undo a commit, keep the work staged
+Moves the branch pointer back to an earlier commit, but leaves the undone commit's changes sitting in the staging area, ready to re-commit. Nothing is deleted — only the "save point" is undone. (`--mixed`, the default, also unstages; `--hard` discards completely — handled with care, not used today.)
+```bash
+git commit -m "Temporary commit for reset --soft demo"
+git reset --soft HEAD~1   # commit gone from log; file reappears as staged
+```
+`HEAD~1` = "one commit before HEAD." `HEAD~2` = two commits before, etc.
+
+### `git revert <commit>` — the SAFE undo for anything already pushed/shared
+**The key interview distinction: `reset` rewrites history (only safe for local, unpushed commits); `revert` never rewrites history — it adds a new commit that undoes the old one, keeping the mistake visible in history.** Use `revert`, never `reset`, once something is pushed and others may have seen it.
+```bash
+git commit -m "Add mistake.md by accident"
+git push
+git revert HEAD --no-edit   # new commit undoes it; mistake.md commit still visible in history
+```
+Result: `mistake.md` gone from disk, but both the original commit and the revert commit stay in `git log` forever — nothing erased, fully honest history.
+
+**How `revert` actually works (precise):** it diffs the ONE targeted commit against its own parent commit, then applies the opposite of exactly that diff as a new commit — regardless of what else happened afterward. It can target any commit in history, not just the most recent one. If other commits changed other files after the one being reverted, those stay untouched — the resulting snapshot only matches an older commit exactly in the special case of reverting the single most recent commit with nothing else in between.
+
+**File-level vs commit-level scope — an important distinction:**
+- `git restore` (and `restore --staged`) works **per file** — you choose exactly which file(s), or `.` for all: `git restore file1.md file2.md`.
+- `git reset` and `git revert` work **per commit, all-or-nothing** — a commit is one bundled snapshot, and these tools move/reverse the whole bundle. There is no built-in "undo this commit but only for one of its files."
+
+### The full stash toolkit
+
+A stash is a temporary, safe drawer for uncommitted changes (staged and unstaged), letting you clean your working directory without committing half-finished work. Multiple stashes stack, indexed `stash@{0}` (newest), `stash@{1}`, etc.
+
+| Command | What it does |
+|---|---|
+| `git stash push -m "label"` | Saves uncommitted changes into a new stash, cleans working directory |
+| `git stash list` | Shows every saved stash |
+| `git stash show -p stash@{0}` | Shows the diff inside a specific stash, without taking it out |
+| `git stash apply [stash@{n}]` | Brings the changes back — **keeps the stash in the list too** |
+| `git stash pop [stash@{n}]` | Brings the changes back — **removes the stash afterward** (apply + drop combined) |
+| `git stash drop [stash@{n}]` | Permanently deletes a stash, without restoring its changes |
+
+Proven live: `push` → `list`/`show` → `pop` (changes returned, list emptied automatically) → then separately, `push` → `apply` (changes returned, stash **still** in list) → `drop` (removed manually). This confirmed the apply-vs-pop difference directly: `apply` leaves a copy behind, `pop` does not.

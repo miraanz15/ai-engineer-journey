@@ -22,7 +22,7 @@
 - [x] 💥 Merge conflicts — caused and resolved for real, plus a fast-forward and a clean three-way merge both proven live
 - [x] `remote add` `push` `pull` `clone` — all four done hands-on, incl. a real second clone
 - [x] `fetch` vs `pull` — done hands-on via a real second clone, both ways (proved `fetch` alone doesn't move `main`, only `origin/main`)
-- [ ] Undo: `restore` `restore --staged` `reset --soft` · `git revert` · full stash toolkit (push/show/apply/pop/drop)
+- [x] Undo: `restore` `restore --staged` `reset --soft` · `git revert` · full stash toolkit (push/show/apply/pop/drop) — all proven live, incl. the reset-vs-revert safety distinction
 - [ ] `HEAD`, detached HEAD (risk + fix both proven live) · `git blame` · tags (lightweight + annotated)
 - [x] GitHub: real repo created, real first push, under own identity — verified live (HTTP 200)
 - [ ] Docker concept: image vs container, daemon vs CLI, venv-vs-Docker scope

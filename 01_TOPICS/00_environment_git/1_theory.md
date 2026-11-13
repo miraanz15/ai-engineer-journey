@@ -172,3 +172,18 @@ blue-dark
 ### `>` vs `>>` (shell redirection, not Git — came up naturally while practicing)
 - `>` **overwrites** the file completely — deletes old content first.
 - `>>` **appends** to the end — keeps old content, adds new text after it.
+
+## GitHub — connecting the local repo to a remote
+
+Until connected, a repo only exists on one machine, with no backup anywhere. A **remote repository** is a copy hosted on a server (GitHub). Connecting requires two steps:
+
+1. **`git remote add <name> <url>`** — registers the remote's URL under a local alias (conventionally `origin`). Does not upload anything yet.
+2. **`git push -u origin main`** — uploads local commits to that remote. `-u` (`--set-upstream`) creates a **tracking relationship** between local `main` and `origin/main`, so future plain `git push`/`git pull` know where to go automatically.
+
+```bash
+git remote add origin https://github.com/miraanz15/ai-engineer-journey.git
+git remote -v                 # confirms origin registered for fetch + push
+git push -u origin main       # [new branch] main -> main; branch tracks origin/main
+```
+
+Verified live afterward with a direct request to the repo URL — returned HTTP 200.

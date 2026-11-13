@@ -148,4 +148,3 @@ hybrid RAG + pgvector + Whisper/TTS + Docker + full eval suite.
 4. Nothing learned is allowed to fade — spaced repetition every single morning.
 5. Under 70% on a drill means slow down, not push on.
 6. **I also do DSA on my own**, alongside this plan. ~100 LeetCode easy/medium.
-Test line added from the second clone

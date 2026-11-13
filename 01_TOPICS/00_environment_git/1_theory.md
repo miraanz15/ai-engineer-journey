@@ -274,3 +274,34 @@ A stash is a temporary, safe drawer for uncommitted changes (staged and unstaged
 | `git stash drop [stash@{n}]` | Permanently deletes a stash, without restoring its changes |
 
 Proven live: `push` → `list`/`show` → `pop` (changes returned, list emptied automatically) → then separately, `push` → `apply` (changes returned, stash **still** in list) → `drop` (removed manually). This confirmed the apply-vs-pop difference directly: `apply` leaves a copy behind, `pop` does not.
+
+## `HEAD`, detached `HEAD`, `git blame`, and tags
+
+**`HEAD`** is a pointer answering "where am I standing right now?" Normally it's indirect: `HEAD → branch name → commit`. Creating a branch (`git branch`) does NOT move `HEAD`; only `git switch` reattaches `HEAD` to a different branch name. Since `HEAD` is attached to the branch, not a fixed commit, a new commit moves the branch forward and `HEAD` follows automatically.
+
+### Detached `HEAD`
+Happens when you check out a specific commit **by hash**, instead of a branch name: `HEAD` points directly at that one commit, skipping the branch-name layer entirely (`HEAD → Commit`, no branch in between).
+
+**The risk:** any new commit made while detached has no branch name anchoring it. If you switch away without rescuing it, that commit becomes unreachable and Git's garbage collector can delete it permanently.
+
+**The fix:** create a branch right there, before switching away — `git switch -c <name>` — this anchors the commit with a real branch reference, making it safe.
+
+```bash
+git checkout 879596e              # → "Note: switching to '879596e'... You are in 'detached HEAD' state..."
+printf "experimental idea\n" > experiment.md
+git commit -m "Experimental commit while detached"   # [detached HEAD ...] in the output; log shows just (HEAD), no branch
+git switch -c rescue-branch        # commit now shows (HEAD -> rescue-branch) — rescued
+git switch main
+git branch -d rescue-branch        # REFUSED: "not fully merged" — the safety check working
+git branch -D rescue-branch        # force-delete, since this was deliberate and the content wasn't needed
+```
+`-d` (safe) refuses to delete a branch whose commits aren't reachable elsewhere. `-D` (force) skips that check — genuinely destructive if those commits exist nowhere else. After deleting, `experiment.md` was also gone from disk, since `main` never had it.
+
+### `git blame <file>`
+Annotates every line of a file with the commit hash, author, and date of its last change — used to trace who changed a line and why, before modifying unfamiliar code.
+
+### Tags
+A **tag** is a fixed label on one specific commit — unlike a branch, it never moves. Used to mark releases (`v1.0`).
+- **Lightweight tag** (`git tag v0.1-day1`) — just a name, nothing else.
+- **Annotated tag** (`git tag -a v0.1-day1-annotated -m "message"`) — a full object with tagger name, date, and message, shown by `git show` *before* the commit info. Recommended for real releases.
+- **Tags are NOT pushed automatically** with a normal `git push` — need `git push origin --tags` explicitly.

@@ -88,3 +88,33 @@ abc123
 ```
 
 `abc123` matches the value inside `.env` (`FAKE_API_KEY=abc123`), proving `load_dotenv()` really did load the file and `os.getenv()` really did fetch it. Deleted `test_env.py` afterward since it was only a proof script, not real project code.
+
+## Example 6 — the full add → commit → log → diff cycle
+
+```bash
+$ git add -A
+$ git status          # 280 files now under "Changes to be committed"
+$ git commit -m "Day 1 restart: fresh environment, git, and docker setup"
+[master (root-commit) c5c94c9] ... 280 files changed, 5040 insertions(+)
+$ git log
+commit c5c94c9... (HEAD -> master)
+Author: MiraanEjaz <miraanejaz15@gmail.com>
+Date:   ...
+    Day 1 restart: fresh environment, git, and docker setup
+```
+
+Then, to see `git diff` actually show something:
+```bash
+$ echo "# test line for git diff" >> README.md
+$ git diff
+--- a/README.md
++++ b/README.md
+@@ -148,3 +148,4 @@ ...
++# test line for git diff
+```
+
+Cleaned up afterward (plain bash, not a Git undo tool yet):
+```bash
+$ head -n -1 README.md > /tmp/readme_fix && mv /tmp/readme_fix README.md
+$ git diff        # empty output — confirms working directory matches the last commit exactly
+```

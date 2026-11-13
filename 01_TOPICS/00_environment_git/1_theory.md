@@ -91,3 +91,40 @@ git init
 Tells Git "start watching this folder." Creates a hidden `.git` folder holding the entire history, branches, and configuration for this repo.
 
 Ran it → got the default branch name warning (`master` vs `main`), and confirmed with `git status` → "On branch master, No commits yet" with every real file listed as untracked (`.gitignore`, `.claude/`, `00_PLAN/`, etc. — correctly, `venv/` and `.env` did NOT appear, proving `.gitignore` is already working before the very first commit).
+
+### `git add` — staging
+
+```bash
+git add -A
+```
+
+`-A` stages every change across the whole project — new, modified, and deleted files all at once. After this, `git status` shows the same files, but now under "Changes to be committed" instead of "Untracked files" — this is the file moving from the working directory into the staging area.
+
+### `git commit` — saving the snapshot
+
+```bash
+git commit -m "Day 1 restart: fresh environment, git, and docker setup"
+```
+
+`-m` writes the commit message directly in the command. This created the **root commit** (`c5c94c9`) — the very first commit, with no parent — containing 280 files.
+
+**Good commit message feedback:** the message was specific (said *what* happened and *what areas*), which is the main goal — letting someone understand the change without opening the diff. One professional convention worth knowing: many teams keep the first line under ~50 characters and write it in **imperative mood** (e.g. "Restart Day 1 setup" instead of "Day 1 restart"). Both styles are acceptable; imperative + short is simply the most common convention seen across real projects.
+
+### `git log` — the history
+
+```bash
+git log
+```
+
+Shows every commit, newest first: the commit hash (unique ID), author, date, and message. With one commit so far, it showed just that one, including `(HEAD -> master)` — `HEAD` is a pointer meaning "where you currently are"; right now it points at branch `master`, which points at this commit. (Full depth on `HEAD` and detached `HEAD` comes later today.)
+
+### `git diff` — reviewing changes before committing
+
+```bash
+echo "# test line for git diff" >> README.md
+git diff
+```
+
+Shows a line-by-line comparison against the last commit — added lines marked with `+`, removed lines with `-`. This lets you review exactly what you're about to save, before staging or committing it.
+
+After cleaning the test line back out (plain bash, not a Git command — Git's own undo tools come later), `git diff` produced no output at all, confirming the working directory exactly matched the last commit again.

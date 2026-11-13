@@ -15,9 +15,9 @@
 - [x] pip: install, list, freeze, `requirements.txt` — proven with a full destroy-and-rebuild test
 - [x] `.env` + `python-dotenv`; `.gitignore` — incl. the "must exist before first commit" rule, proven live (ordering + a real `load_dotenv()`/`os.getenv()` read-in test)
 - [x] Why version control exists
-- [ ] `git init` `status` `add` `commit` `log` `diff` *(init + status done; add/commit/log/diff pending)*
-- [ ] The three rooms: working area → staging → repository
-- [ ] Good commit messages — practiced, got feedback, revised
+- [x] `git init` `status` `add` `commit` `log` `diff`
+- [x] The three rooms: working area → staging → repository
+- [x] Good commit messages — practiced, got feedback (specific + descriptive is good; imperative mood + under 50 chars is the common convention)
 - [ ] `branch` `switch` `merge`
 - [ ] 💥 Merge conflicts — caused and resolved twice, plus a clean three-way merge in between
 - [ ] `remote add` `push` `pull` `clone`

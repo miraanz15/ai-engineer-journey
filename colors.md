@@ -1,2 +1,2 @@
 red
-blue
+blue-light

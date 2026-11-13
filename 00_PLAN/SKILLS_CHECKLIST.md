@@ -20,8 +20,8 @@
 - [x] Good commit messages — practiced, got feedback (specific + descriptive is good; imperative mood + under 50 chars is the common convention)
 - [x] `branch` `switch` `merge` — incl. `switch -c` shortcut, `branch -d`, and renaming `master`→`main`
 - [x] 💥 Merge conflicts — caused and resolved for real, plus a fast-forward and a clean three-way merge both proven live
-- [x] `remote add` `push` `pull` `clone` *(`remote add` + first `push` done and verified live on GitHub; `pull`/`clone` pending with fetch-vs-pull item below)*
-- [ ] `fetch` vs `pull` — done hands-on via a real second clone, both ways
+- [x] `remote add` `push` `pull` `clone` — all four done hands-on, incl. a real second clone
+- [x] `fetch` vs `pull` — done hands-on via a real second clone, both ways (proved `fetch` alone doesn't move `main`, only `origin/main`)
 - [ ] Undo: `restore` `restore --staged` `reset --soft` · `git revert` · full stash toolkit (push/show/apply/pop/drop)
 - [ ] `HEAD`, detached HEAD (risk + fix both proven live) · `git blame` · tags (lightweight + annotated)
 - [x] GitHub: real repo created, real first push, under own identity — verified live (HTTP 200)

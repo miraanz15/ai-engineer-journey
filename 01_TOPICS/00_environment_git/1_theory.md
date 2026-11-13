@@ -187,3 +187,36 @@ git push -u origin main       # [new branch] main -> main; branch tracks origin/
 ```
 
 Verified live afterward with a direct request to the repo URL — returned HTTP 200.
+
+## `fetch` vs `pull` — three separate places, not two
+
+Git actually tracks **three** things, not two:
+1. **Local branch (`main`)** — your real, current files.
+2. **Remote-tracking branch (`origin/main`)** — a *local* saved snapshot of what GitHub last showed you. Lives in your own `.git` folder, under `.git/refs/remotes/origin/main`. Does **not** update by itself.
+3. **The real GitHub `main`** — the only one of the three NOT on your computer.
+
+- **`git fetch`** downloads new commits and updates `origin/main` only. Your actual `main` branch and files are untouched.
+- **`git pull`** = `git fetch` + `git merge origin/main`, done automatically in one step.
+
+### Proven live, with a real second clone
+```bash
+git clone https://github.com/miraanz15/ai-engineer-journey.git clone-test
+cd clone-test
+printf "Test line...\n" >> README.md
+git add -A && git commit -m "..." && git push      # simulates another collaborator
+```
+Back in the original folder:
+```bash
+git log --oneline -1              # main:         d9c52f6 (old)
+git log --oneline origin/main -1  # origin/main:  d9c52f6 (old — hasn't checked yet)
+
+git fetch                         # d9c52f6..abe2a52  main -> origin/main
+git log --oneline -1              # main:         still d9c52f6 — UNCHANGED
+git log --oneline origin/main -1  # origin/main:  abe2a52 — updated!
+```
+This is the proof: `fetch` alone moved `origin/main` but left `main` completely untouched.
+```bash
+git merge origin/main             # Fast-forward — brings the change into main for real
+cat README.md                     # test line now present locally
+```
+Confirms `fetch` + `merge` = what `pull` would have done in one step.

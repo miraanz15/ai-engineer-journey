@@ -128,3 +128,47 @@ git diff
 Shows a line-by-line comparison against the last commit — added lines marked with `+`, removed lines with `-`. This lets you review exactly what you're about to save, before staging or committing it.
 
 After cleaning the test line back out (plain bash, not a Git command — Git's own undo tools come later), `git diff` produced no output at all, confirming the working directory exactly matched the last commit again.
+
+## Branching, merging, and conflicts
+
+**Branch:** a movable pointer to a commit. Creating one is nearly instant — it does not copy any files. `git branch <name>` creates it without moving onto it; `git switch <name>` moves `HEAD` onto it; `git switch -c <name>` does both at once.
+
+**Important distinction:** uncommitted changes never belong to any branch. They live only in the working directory / staging area. What decides which branch a change ends up on is which branch `HEAD` was pointing at **at the moment `git commit` runs** — not when the edit was made.
+
+**Why `master`, not `main`:** Git's own local default branch name has always been `master`; GitHub changed only its own platform-level default to `main` around 2020. A local `git init` still uses Git's default unless `init.defaultBranch` is configured. Renamed with `git branch -m master main` (works even while on a different branch, by naming both old and new explicitly).
+
+### Fast-forward merge
+Happens when the target branch (`main`) has had **no new commits** since the other branch diverged. Git just moves `main`'s pointer forward — no new merge commit, history stays linear.
+```bash
+git switch main
+git merge practice-feature   # → "Fast-forward"
+```
+
+### Clean three-way merge
+Happens when **both** branches have new commits since diverging, but they touch **different** things. Git finds the common ancestor, combines both sides automatically, and creates a **merge commit** — a commit with two parents.
+```bash
+git switch -c feature-colors   # branched from main, added "blue" to colors.md
+git switch main                 # meanwhile, main added greeting.md (different file)
+git merge feature-colors        # → "Merge made by the 'ort' strategy" — no conflict
+```
+`git log --oneline --graph` shows the shape: two lines splitting from a shared ancestor, joining back into one merge commit with two parents.
+
+### Real merge conflict — caused and resolved
+Happens when both branches change the **same line** differently. Git cannot guess which is correct, so it stops and inserts conflict markers directly into the file:
+```
+red
+<<<<<<< HEAD
+blue-light
+=======
+blue-dark
+>>>>>>> feature-conflict
+```
+- `<<<<<<< HEAD` → start of the current branch's version
+- `=======` → divider between the two versions
+- `>>>>>>> <branch>` → end, naming the incoming branch
+
+**Resolving it:** manually edit the file to the final intended content, delete all marker lines, then `git add` + `git commit` as normal — this becomes a merge commit, reached by hand instead of automatically. Verified with a second real conflict (`main`'s `blue-light` vs `feature-conflict`'s `blue-dark`), resolved by keeping both.
+
+### `>` vs `>>` (shell redirection, not Git — came up naturally while practicing)
+- `>` **overwrites** the file completely — deletes old content first.
+- `>>` **appends** to the end — keeps old content, adds new text after it.

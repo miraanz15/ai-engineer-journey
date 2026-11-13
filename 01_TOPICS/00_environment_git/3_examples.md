@@ -118,3 +118,63 @@ Cleaned up afterward (plain bash, not a Git undo tool yet):
 $ head -n -1 README.md > /tmp/readme_fix && mv /tmp/readme_fix README.md
 $ git diff        # empty output — confirms working directory matches the last commit exactly
 ```
+
+## Example 7 — fast-forward merge
+
+```bash
+$ git branch practice-feature
+$ git switch practice-feature
+$ git commit -m "Document Day 1: ..."   # main never moved
+$ git switch main
+$ git merge practice-feature
+Updating c5c94c9..dfad6d1
+Fast-forward
+```
+`main` just slid forward to match — no merge commit, linear history.
+
+## Example 8 — clean three-way merge (real mistake: renamed `master`→`main` mid-session)
+
+```bash
+$ git switch -c feature-colors         # from main (colors.md = "red")
+$ printf "red\nblue\n" > colors.md
+$ git commit -m "Add blue to colors list"
+$ git switch main
+$ printf "hello\n" > greeting.md       # different file — no overlap
+$ git commit -m "Add greeting file"
+$ git merge feature-colors
+Merge made by the 'ort' strategy.
+```
+`git log --oneline --graph` showed two lines splitting from `aafb4e9` and joining at `7e3961f` (two parents). `colors.md` has `blue`, `greeting.md` has `hello` — both kept.
+
+## Example 9 — 💥 a real conflict, caused on purpose, and resolved
+
+```bash
+$ git switch -c feature-conflict        # from main (colors.md = "red\nblue")
+$ printf "red\nblue-dark\n" > colors.md
+$ git commit -m "Change blue to blue-dark"
+$ git switch main
+$ printf "red\nblue-light\n" > colors.md   # SAME line 2, different value
+$ git commit -m "Change blue to blue-light"
+$ git merge feature-conflict
+CONFLICT (content): Merge conflict in colors.md
+```
+
+File after the conflict:
+```
+red
+<<<<<<< HEAD
+blue-light
+=======
+blue-dark
+>>>>>>> feature-conflict
+```
+
+Resolved by rewriting the file to the intended final content and removing the markers, then committing normally:
+```bash
+$ printf "red\nblue-light\nblue-dark\n" > colors.md
+$ git add colors.md
+$ git commit -m "Resolve merge conflict: keep both blue-light and blue-dark"
+```
+Produced a second merge commit (`b021bf3`), this time resolved by hand instead of automatically.
+
+**Real mistake/decision during this session:** renamed the default branch from `master` to `main` mid-way through today's practice, after asking why it wasn't `main` by default — `git branch -m master main`, done while standing on a different branch, confirming the rename doesn't require being on that branch.

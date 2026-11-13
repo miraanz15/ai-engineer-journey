@@ -18,8 +18,8 @@
 - [x] `git init` `status` `add` `commit` `log` `diff`
 - [x] The three rooms: working area → staging → repository
 - [x] Good commit messages — practiced, got feedback (specific + descriptive is good; imperative mood + under 50 chars is the common convention)
-- [ ] `branch` `switch` `merge`
-- [ ] 💥 Merge conflicts — caused and resolved twice, plus a clean three-way merge in between
+- [x] `branch` `switch` `merge` — incl. `switch -c` shortcut, `branch -d`, and renaming `master`→`main`
+- [x] 💥 Merge conflicts — caused and resolved for real, plus a fast-forward and a clean three-way merge both proven live
 - [ ] `remote add` `push` `pull` `clone`
 - [ ] `fetch` vs `pull` — done hands-on via a real second clone, both ways
 - [ ] Undo: `restore` `restore --staged` `reset --soft` · `git revert` · full stash toolkit (push/show/apply/pop/drop)

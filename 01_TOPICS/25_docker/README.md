@@ -11,12 +11,12 @@
 
 ## Status
 
-- [ ] Level 1 learned (concept + hands-on: image/container, daemon, venv-vs-Docker)
-- [ ] Level 1 drills done
+- [x] Level 1 learned (concept + hands-on: image/container, daemon, venv-vs-Docker)
+- [x] Level 1 drills done — 8/8, incl. two "break it" refusals triggered live
 - [ ] Level 2 learned *(Day 43 — Dockerfile authoring, layers, compose, multi-stage)*
 - [ ] Level 2 drills done
-- [ ] Interview questions answered
-- [ ] Can explain this topic with no notes
+- [x] Interview questions answered — 7 full Q&As in `5_interview_qa.md`
+- [ ] Can explain this topic with no notes *(pending verbal drill)*
 
 ## What's in this folder
 

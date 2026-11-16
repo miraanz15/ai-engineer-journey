@@ -25,8 +25,8 @@
 - [x] Undo: `restore` `restore --staged` `reset --soft` · `git revert` · full stash toolkit (push/show/apply/pop/drop) — all proven live, incl. the reset-vs-revert safety distinction
 - [x] `HEAD`, detached HEAD (risk + fix both proven live) · `git blame` · tags (lightweight + annotated, pushed with `--tags`)
 - [x] GitHub: real repo created, real first push, under own identity — verified live (HTTP 200)
-- [ ] Docker concept: image vs container, daemon vs CLI, venv-vs-Docker scope
-- [ ] Run MongoDB in Docker — pulled, ran detached, verified port mapping, stopped/started, confirmed same container ID survives restart
+- [x] Docker concept: image vs container, daemon vs CLI, venv-vs-Docker scope — proven live via `hello-world`'s own output describing the client/daemon flow
+- [x] Run MongoDB in Docker — pulled, ran detached, verified port mapping, stopped/started, confirmed same container ID survives restart; plus `rm`/`rm -f`, `images`/`rmi` (both safety refusals triggered on purpose), and `logs`
 
 ## 01 · Python for AI `Day 2`
 - [ ] Data types; list / tuple / dict / set — when to use each

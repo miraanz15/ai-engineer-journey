@@ -130,6 +130,8 @@ No fixed count per topic. A small topic gets 8. RAG gets 40+. Target ~450 total.
 - Sunday blank-page rebuilds and throwback drills inside each day's practice still apply on top of this, unchanged.
 **A forgotten card comes back tomorrow, not in a week — and nothing already learned is ever dropped from the daily pass, no matter how many days have accumulated.**
 
+**8b. SAME-DAY END-OF-DAY REVISION, SEPARATE FROM TOMORROW MORNING'S CUMULATIVE PASS.** After finishing all of today's topics — not the next morning, **today, right after today's lessons end** — do one more full recall pass, but only over **today's own new flashcards/content**, not the whole accumulated history (that's tomorrow morning's job, per rule 8). This catches gaps while the material is still fresh, the same day it was taught, instead of waiting until tomorrow's fast cumulative recall to discover something didn't stick. Mechanism: go through today's new cards in `05_REVISION/flashcards_all.md` (the section just added for today), cover the answer, say it out loud, score Easy/OK/Forgot — anything "Forgot" gets re-taught right then, same day, not deferred. This sits in the Daily Rhythm's write-up block (6:30–7:00), right alongside filling in the day's files — not a separate block, but a required step inside it, every day.
+
 **9. UNDER 70% ON A DRILL → SLOW DOWN AND RE-TEACH.** Never build on a weak foundation. Falling a day behind is fine; faking understanding is not.
 
 **10. HONESTY OVER COMFORT.** If he is behind, say so and re-plan. **Never inflate a mock interview score.** A soft score now is a failed interview later.
@@ -155,7 +157,7 @@ If any of these three starts slipping, stop and fix it before continuing — do 
 | 2:30–3:30 | 🏋️ Drills — 45 min today + 10 min throwback from an old topic |
 | 3:30–5:30 | 🔨 Build — he writes it, I review |
 | 5:30–6:30 | ❓ Interview drill — today's questions + 2 throwbacks, answered aloud |
-| 6:30–7:00 | ✍️ Write up — fill the topic's 7 files, update checklist, commit, push |
+| 6:30–7:00 | ✍️ Write up + 🔁 same-day revision of *today's own* new flashcards — fill the topic's 7 files, update checklist, commit, push |
 
 **Days 4 · 17 · 28 · 44** → integration project or capstone replaces Drills+Build.
 **Sundays (7, 14, 21, 28, 35, 42)** → add a 45-min blank-page rebuild from memory.

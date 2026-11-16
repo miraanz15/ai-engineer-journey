@@ -9,7 +9,10 @@ and comes back tomorrow.
 
 ---
 
-## Day 1 — Environment, Git & Docker  `#00_environment_git`
+## Day 1 — Environment, Git & Docker  `#00_environment_git` `#25_docker`
 
-*(filled at the end of Day 1)*
+**Environment / Git — see full set in `01_TOPICS/00_environment_git/6_flashcards.md` (30 cards)**
+**Docker — see full set in `01_TOPICS/25_docker/6_flashcards.md` (14 cards)**
+
+Total new cards today: **44**.
 

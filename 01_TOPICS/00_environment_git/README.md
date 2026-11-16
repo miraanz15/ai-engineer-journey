@@ -11,12 +11,12 @@
 
 ## Status
 
-- [ ] Level 1 learned (venv, pip, .env, .gitignore, full Git — branching, 3 merge types, conflict, undo ×3, revert, stash toolkit, detached HEAD, blame, tags, fetch vs pull)
-- [ ] Level 1 drills done
+- [x] Level 1 learned (venv, pip, .env, .gitignore, full Git — branching, 3 merge types, conflict, undo ×3, revert, stash toolkit, detached HEAD, blame, tags, fetch vs pull)
+- [x] Level 1 drills done — all 30 flashcards + live practice in `3_examples.md`
 - [ ] Level 2 learned *(Day 43 — Git for teams & organisations)*
 - [ ] Level 2 drills done
-- [ ] Interview questions written
-- [ ] Can explain this topic with no notes
+- [x] Interview questions written — 7 full Q&As in `5_interview_qa.md`, incl. reset-vs-revert and detached HEAD
+- [ ] Can explain this topic with no notes *(pending verbal drill)*
 
 ## What's in this folder
 
